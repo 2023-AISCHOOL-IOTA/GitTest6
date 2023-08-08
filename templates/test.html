@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trash Can</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+        }
+    </style>
+    <meta http-equiv="refresh" content="5"> <!-- 5초마다 새로고침 -->
+</head>
+<body>
+    <div class="container">
+        <h1>Trash Can Capacity</h1>
+        <p><strong>Current Capacity:</strong> {{ capacity }}%</p>
+        <button id="startTrashButton">Request Trash Can Departure</button>
+    </div>
+
+    <script>
+        async function startTrash() {
+            const response = await fetch('/start', { method: 'POST' });
+
+            if (response.ok) {
+                alert('Trash can departure requested');
+            } else {
+                alert('Failed to request trash can departure');
+            }
+        }
+
+        document.getElementById('startTrashButton').addEventListener('click', startTrash);
+    </script>
+</body>
+</html>
